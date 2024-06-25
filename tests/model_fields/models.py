@@ -673,7 +673,7 @@ class GeneratedModelCheckConstraintVirtual(models.Model):
 
     class Meta:
         required_db_features = {
-            "supports_stored_generated_columns",
+            "supports_virtual_generated_columns",
             "supports_table_check_constraints",
         }
         constraints = [
