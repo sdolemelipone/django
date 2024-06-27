@@ -622,7 +622,11 @@ class GeneratedModelUniqueConstraint(models.Model):
     class Meta:
         required_db_features = {"supports_stored_generated_columns"}
         constraints = [
-            models.UniqueConstraint(Lower("name"), name="name_uniq_generated")
+            models.UniqueConstraint(Lower("name"), name="name_lower_uniq_generated"),
+            models.UniqueConstraint(fields=["name"], name="name_uniq_generated"),
+            models.UniqueConstraint(
+                fields=["lower_name"], name="lower_name_uniq_generated"
+            ),
         ]
 
 
@@ -637,7 +641,15 @@ class GeneratedModelUniqueConstraintVirtual(models.Model):
     class Meta:
         required_db_features = {"supports_virtual_generated_columns"}
         constraints = [
-            models.UniqueConstraint(Lower("name"), name="name_uniq_generated_virtual")
+            models.UniqueConstraint(
+                Lower("name"), name="name_lower_uniq_generated_virtual"
+            ),
+            models.UniqueConstraint(
+                fields=["name"], name="name_uniq_generated_virtual"
+            ),
+            models.UniqueConstraint(
+                fields=["lower_name"], name="lower_name_uniq_generated_virtual"
+            ),
         ]
 
 
